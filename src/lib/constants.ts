@@ -13,7 +13,6 @@ export const SITE = {
 } as const;
 
 export const NAV_LINKS = [
-  { label: "Home", href: "/" },
   { label: "Automotive", href: "/automotive" },
   { label: "Residential", href: "/residential" },
   { label: "Commercial", href: "/commercial" },
