@@ -138,7 +138,14 @@ export function Header() {
                 </Link>
               </li>
             ))}
-            <li className="pt-3 border-t border-gray-100 mt-3">
+            <li className="pt-3 border-t border-gray-100 mt-3 space-y-2">
+              <Link
+                href="/contact"
+                className="flex items-center justify-center px-4 py-3 bg-brand-blue text-white font-semibold rounded-lg hover:bg-brand-blue-hover transition-colors"
+                onClick={() => setIsOpen(false)}
+              >
+                Get a Quote
+              </Link>
               <a
                 href={SITE.phoneTel}
                 className="flex items-center gap-2 px-4 py-3 bg-brand-orange text-white font-semibold rounded-lg hover:bg-brand-orange-hover transition-colors"
