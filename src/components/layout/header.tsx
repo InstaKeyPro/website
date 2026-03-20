@@ -41,12 +41,19 @@ export function Header() {
       {/* Top bar */}
       <div className="bg-brand-blue text-white text-sm py-1.5">
         <div className="container flex items-center justify-between gap-4">
-          <span className="hidden sm:block opacity-90">
-            📍 Serving Tampa Bay &amp; Surrounding Areas
-          </span>
+          <div className="flex items-center gap-2 opacity-90">
+            <span className="hidden sm:inline">📍 Serving Tampa Bay &amp; Surrounding Areas</span>
+            <span className="hidden sm:inline text-white/50">|</span>
+            <Link
+              href="/service-areas"
+              className="hover:text-brand-orange transition-colors"
+            >
+              Service Areas
+            </Link>
+          </div>
           <a
             href={SITE.phoneTel}
-            className="flex items-center gap-1.5 font-semibold hover:text-brand-orange transition-colors ml-auto"
+            className="flex items-center gap-1.5 font-semibold hover:text-brand-orange transition-colors"
           >
             <Phone className="h-3.5 w-3.5" aria-hidden="true" />
             {SITE.phone}
@@ -89,12 +96,6 @@ export function Header() {
 
           {/* Desktop CTA */}
           <div className="hidden lg:flex items-center gap-3">
-            <Button asChild variant="secondary" size="sm">
-              <a href={SITE.phoneTel}>
-                <Phone className="h-4 w-4" aria-hidden="true" />
-                Call Now
-              </a>
-            </Button>
             <Button asChild variant="primary" size="sm">
               <Link href="/contact">Get a Quote</Link>
             </Button>
