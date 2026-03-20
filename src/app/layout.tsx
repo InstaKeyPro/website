@@ -7,6 +7,8 @@ import { StickyCallButton } from "@/components/layout/sticky-call-button";
 import { Chatbot } from "@/components/chatbot/chatbot";
 import { LocalBusinessSchema } from "@/components/seo/json-ld";
 import { SITE } from "@/lib/constants";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -99,6 +101,8 @@ export default function RootLayout({
         <Footer />
         <StickyCallButton />
         <Chatbot />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
