@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, forwardRef, useImperativeHandle } from "react";
+import { useEffect, useRef, forwardRef, useImperativeHandle, useLayoutEffect } from "react";
 import { useGooglePlaces } from "@/hooks/use-google-places";
 import { cn } from "@/lib/utils";
 
@@ -37,7 +37,12 @@ export const AddressAutocomplete = forwardRef<
   ) => {
     const inputRef = useRef<HTMLInputElement>(null);
     const autocompleteRef = useRef<google.maps.places.Autocomplete | null>(null);
+    const onSelectRef = useRef(onSelect);
+    const onChangeRef = useRef(onChange);
     const ready = useGooglePlaces();
+
+    useLayoutEffect(() => { onSelectRef.current = onSelect; });
+    useLayoutEffect(() => { onChangeRef.current = onChange; });
 
     useImperativeHandle(ref, () => ({
       getValue: () => inputRef.current?.value ?? "",
@@ -66,12 +71,11 @@ export const AddressAutocomplete = forwardRef<
           lng: place.geometry?.location?.lng(),
           place_id: place.place_id,
         };
-        // Update the DOM input value to the formatted address
         if (inputRef.current) inputRef.current.value = result.address;
-        onChange?.(result.address);
-        onSelect?.(result);
+        onChangeRef.current?.(result.address);
+        onSelectRef.current?.(result);
       });
-    }, [ready, onSelect, onChange]);
+    }, [ready]); // callbacks kept current via refs — no re-registration needed
 
     return (
       <input

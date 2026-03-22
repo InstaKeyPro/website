@@ -1,5 +1,13 @@
+import { Resend } from "resend";
 import { getSupabase } from "./db";
+import { SITE } from "./constants";
 import type { RequestInput } from "./schema";
+
+let _resend: Resend | null = null;
+function getResend(): Resend {
+  if (!_resend) _resend = new Resend(process.env.RESEND_API_KEY!);
+  return _resend;
+}
 
 export class DuplicateRequestError extends Error {
   constructor() {
@@ -31,7 +39,7 @@ export async function createRequest(
     .insert({
       name: data.name,
       phone: data.phone,
-      email: data.email || null,
+      email: data.email ?? null,
       address: data.address,
       lat: data.lat ?? null,
       lng: data.lng ?? null,
@@ -53,12 +61,10 @@ export async function createRequest(
   // Send confirmation email if Resend is configured and email was provided
   if (data.email && process.env.RESEND_API_KEY) {
     try {
-      const { Resend } = await import("resend");
-      const resend = new Resend(process.env.RESEND_API_KEY);
-      await resend.emails.send({
-        from: "InstaKey Pro <noreply@instakeypro.com>",
+      await getResend().emails.send({
+        from: `${SITE.name} <noreply@instakeypro.com>`,
         to: data.email,
-        subject: "We received your request – InstaKey Pro",
+        subject: `We received your request – ${SITE.name}`,
         html: `
           <div style="font-family: sans-serif; max-width: 560px; margin: 0 auto;">
             <h2 style="color: #1e3a5f;">Hi ${data.name}!</h2>
@@ -70,14 +76,13 @@ export async function createRequest(
             </table>
             <p>A technician will call you at <strong>${data.phone}</strong> shortly.</p>
             <p>For the fastest response, call us directly:<br/>
-              <a href="tel:+18132954321" style="color: #f97316; font-weight: bold;">(813) 295-4321</a>
+              <a href="${SITE.phoneTel}" style="color: #f97316; font-weight: bold;">${SITE.phone}</a>
             </p>
-            <p style="color: #999; font-size: 12px; margin-top: 32px;">— InstaKey Pro Team · Tampa Bay, FL</p>
+            <p style="color: #999; font-size: 12px; margin-top: 32px;">— ${SITE.name} · Tampa Bay, FL</p>
           </div>
         `,
       });
     } catch (err) {
-      // Non-fatal — log but don't fail the request
       console.error("[requests] Email send failed:", err);
     }
   }

@@ -1,16 +1,14 @@
 "use client";
 
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect } from "react";
 import { MessageCircle, X, Send, Phone, Bot } from "lucide-react";
-import { SITE } from "@/lib/constants";
+import { SITE, SERVICE_NAMES } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import {
   AddressAutocomplete,
   type AddressAutocompleteHandle,
   type PlaceResult,
 } from "@/components/ui/address-autocomplete";
-
-// ─── State machine types ───────────────────────────────────────────────────────
 
 type Step =
   | "greeting"
@@ -24,7 +22,7 @@ type Step =
 interface Message {
   from: "bot" | "user";
   text: string;
-  type?: "confirmation" | "success";
+  type?: "confirmation" | "cta";
 }
 
 interface ChatData {
@@ -38,15 +36,14 @@ interface ChatData {
   notes?: string;
 }
 
-// ─── Constants ─────────────────────────────────────────────────────────────────
-
-const SERVICE_OPTIONS = [
+// Quick-select buttons for the greeting step — subset of SERVICE_NAMES
+const CHAT_QUICK_OPTIONS: Array<(typeof SERVICE_NAMES)[number]> = [
   "Car Lockout",
-  "Key Replacement",
+  "Lost Car Key / Key Replacement",
   "House Lockout",
   "Lock Rekey",
   "Commercial Lockout",
-  "Smart Lock Install",
+  "Smart Lock Installation",
   "Other",
 ];
 
@@ -64,8 +61,6 @@ function buildConfirmation(d: ChatData): string {
   );
 }
 
-// ─── Component ─────────────────────────────────────────────────────────────────
-
 export function Chatbot() {
   const [open, setOpen] = useState(false);
   const [step, setStep] = useState<Step>("greeting");
@@ -77,8 +72,6 @@ export function Chatbot() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const addressRef = useRef<AddressAutocompleteHandle>(null);
-
-  // ─── Init / scroll / focus ───────────────────────────────────────────────────
 
   useEffect(() => {
     if (open && messages.length === 0) {
@@ -96,17 +89,17 @@ export function Chatbot() {
     }
   }, [open, step]);
 
-  // ─── Helpers ──────────────────────────────────────────────────────────────────
-
   function addMessage(from: "bot" | "user", text: string, type?: Message["type"]) {
     setMessages((prev) => [...prev, { from, text, type }]);
   }
 
-  function botReply(text: string, type?: Message["type"]) {
-    setTimeout(() => addMessage("bot", text, type), 600);
+  // Batches bot message + optional step transition into one timer to avoid race conditions
+  function botReply(text: string, nextStep?: Step, type?: Message["type"]) {
+    setTimeout(() => {
+      addMessage("bot", text, type);
+      if (nextStep) setStep(nextStep);
+    }, 600);
   }
-
-  // ─── Step handlers ───────────────────────────────────────────────────────────
 
   function handleSend(value?: string) {
     const text = (value ?? input).trim();
@@ -116,62 +109,47 @@ export function Chatbot() {
 
     if (step === "greeting") {
       setChatData((d) => ({ ...d, service_type: text }));
-      botReply("Got it! What's your name?");
-      setTimeout(() => setStep("name"), 600);
+      botReply("Got it! What's your name?", "name");
     } else if (step === "name") {
       setChatData((d) => ({ ...d, name: text }));
-      botReply(`Nice to meet you, ${text}! What's the best phone number to reach you?`);
-      setTimeout(() => setStep("phone"), 600);
+      botReply(`Nice to meet you, ${text}! What's the best phone number to reach you?`, "phone");
     } else if (step === "phone") {
-      const updated = { ...chatData, phone: text };
-      setChatData(updated);
-      botReply("What's the address where you need service?");
-      setTimeout(() => setStep("address"), 600);
+      setChatData((d) => ({ ...d, phone: text }));
+      botReply("What's the address where you need service?", "address");
     }
   }
 
-  // Called when user picks a suggestion from Google Places autocomplete
-  const handleAddressSelect = useCallback(
-    (result: PlaceResult) => {
-      const updated: ChatData = {
-        ...chatData,
-        address: result.address,
-        lat: result.lat,
-        lng: result.lng,
-        place_id: result.place_id,
-      };
-      setChatData(updated);
-      addMessage("user", result.address);
-      botReply("Any additional details? (e.g. car model, type of lock) — or tap Skip.");
-      setTimeout(() => setStep("notes"), 600);
-    },
-    [chatData]
-  );
+  function handleAddressSelect(result: PlaceResult) {
+    setChatData((prev) => ({
+      ...prev,
+      address: result.address,
+      lat: result.lat,
+      lng: result.lng,
+      place_id: result.place_id,
+    }));
+    addMessage("user", result.address);
+    botReply("Any additional details? (e.g. car model, type of lock) — or tap Skip.", "notes");
+  }
 
-  // Called when user manually types an address and clicks Send
   function handleAddressSend() {
     const val = addressRef.current?.getValue()?.trim();
     if (!val) return;
     addressRef.current?.clear();
-    const updated: ChatData = { ...chatData, address: val };
-    setChatData(updated);
+    setChatData((prev) => ({ ...prev, address: val }));
     addMessage("user", val);
-    botReply("Any additional details? (e.g. car model, type of lock) — or tap Skip.");
-    setTimeout(() => setStep("notes"), 600);
+    botReply("Any additional details? (e.g. car model, type of lock) — or tap Skip.", "notes");
   }
 
   function handleNotesSend(skip: boolean) {
     const text = skip ? "" : input.trim();
     if (!skip && !text) return;
     setInput("");
-
-    const updatedNotes = skip ? undefined : text;
-    const updated: ChatData = { ...chatData, notes: updatedNotes };
+    const notes = skip ? undefined : text;
+    // Need chatData synchronously here to build the confirmation message
+    const updated: ChatData = { ...chatData, notes };
     setChatData(updated);
-
     addMessage("user", skip ? "Skip" : text);
-    botReply(buildConfirmation(updated), "confirmation");
-    setTimeout(() => setStep("confirmation"), 600);
+    botReply(buildConfirmation(updated), "confirmation", "confirmation");
   }
 
   async function handleConfirm() {
@@ -183,17 +161,7 @@ export function Chatbot() {
       const res = await fetch("/api/requests", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: chatData.name,
-          phone: chatData.phone,
-          address: chatData.address,
-          lat: chatData.lat,
-          lng: chatData.lng,
-          place_id: chatData.place_id,
-          service_type: chatData.service_type,
-          notes: chatData.notes,
-          source: "chat",
-        }),
+        body: JSON.stringify({ ...chatData, source: "chat" }),
       });
 
       const json = await res.json();
@@ -201,29 +169,29 @@ export function Chatbot() {
       if (res.ok) {
         botReply(
           `✅ Request confirmed! We'll call you at ${chatData.phone} shortly.\n\nFor immediate help, call us:`,
-          "success"
+          "submitted",
+          "cta"
         );
       } else {
         botReply(
           json.error ?? "Something went wrong. Please call us directly.",
-          "success"
+          "submitted",
+          "cta"
         );
       }
     } catch {
-      botReply("Connection error. Please call us directly.", "success");
+      botReply("Connection error. Please call us directly.", "submitted", "cta");
     } finally {
       setIsSubmitting(false);
-      setTimeout(() => setStep("submitted"), 600);
     }
   }
 
   function handleReset() {
-    setMessages([]);
+    setMessages([{ from: "bot", text: GREETING }]);
     setStep("greeting");
     setChatData({});
     setInput("");
     setIsSubmitting(false);
-    setTimeout(() => setMessages([{ from: "bot", text: GREETING }]), 100);
   }
 
   function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
@@ -233,11 +201,8 @@ export function Chatbot() {
     }
   }
 
-  // ─── Render ───────────────────────────────────────────────────────────────────
-
   return (
     <>
-      {/* Toggle button */}
       <button
         onClick={() => setOpen(!open)}
         className="fixed bottom-6 left-6 z-50 w-14 h-14 bg-brand-blue hover:bg-brand-blue-hover text-white rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95"
@@ -257,7 +222,6 @@ export function Chatbot() {
         )}
       </button>
 
-      {/* Chat window */}
       <div
         id="chatbot-window"
         role="dialog"
@@ -317,7 +281,6 @@ export function Chatbot() {
               >
                 {msg.text}
 
-                {/* Confirmation actions */}
                 {msg.type === "confirmation" && (
                   <div className="mt-3 space-y-2">
                     <button
@@ -336,8 +299,7 @@ export function Chatbot() {
                   </div>
                 )}
 
-                {/* Success actions */}
-                {msg.type === "success" && (
+                {msg.type === "cta" && (
                   <div className="mt-3 space-y-2">
                     <a
                       href={SITE.phoneTel}
@@ -358,10 +320,9 @@ export function Chatbot() {
             </div>
           ))}
 
-          {/* Service quick-select (greeting step) */}
           {step === "greeting" && messages.length > 0 && (
             <div className="flex flex-wrap gap-2 mt-2">
-              {SERVICE_OPTIONS.map((opt) => (
+              {CHAT_QUICK_OPTIONS.map((opt) => (
                 <button
                   key={opt}
                   onClick={() => handleSend(opt)}
@@ -376,9 +337,7 @@ export function Chatbot() {
           <div ref={messagesEndRef} aria-hidden="true" />
         </div>
 
-        {/* ─── Input area ─── */}
-
-        {/* Address step — Google Places autocomplete */}
+        {/* Address input */}
         {step === "address" && (
           <div className="p-3 border-t border-gray-100 flex-shrink-0">
             <div className="flex items-center gap-2">
@@ -402,7 +361,7 @@ export function Chatbot() {
           </div>
         )}
 
-        {/* Notes step — with Skip button */}
+        {/* Notes input */}
         {step === "notes" && (
           <div className="p-3 border-t border-gray-100 flex-shrink-0">
             <div className="flex items-center gap-2">
@@ -434,7 +393,7 @@ export function Chatbot() {
           </div>
         )}
 
-        {/* Standard text/tel input (greeting, name, phone) */}
+        {/* Text / tel input */}
         {(step === "greeting" || step === "name" || step === "phone") && (
           <div className="p-3 border-t border-gray-100 flex-shrink-0">
             <div className="flex items-center gap-2">

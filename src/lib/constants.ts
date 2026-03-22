@@ -158,6 +158,23 @@ export const SERVICES = {
   },
 } as const;
 
+export const SERVICE_NAMES = [
+  "Car Lockout",
+  "Lost Car Key / Key Replacement",
+  "Key Fob Programming",
+  "Transponder Key",
+  "Ignition Repair",
+  "House Lockout",
+  "Lock Rekey",
+  "Lock Installation",
+  "Deadbolt Upgrade",
+  "Commercial Lockout",
+  "Master Key System",
+  "Access Control",
+  "Smart Lock Installation",
+  "Other",
+] as const;
+
 export const SERVICE_AREAS = [
   { city: "Tampa", state: "FL", zip: "33601", population: "400000" },
   { city: "St Petersburg", state: "FL", zip: "33701", population: "260000" },

@@ -25,9 +25,15 @@ export function useGooglePlaces(): boolean {
     // Avoid injecting a duplicate script tag
     const existing = document.querySelector(
       'script[src*="maps.googleapis.com"]'
-    );
+    ) as HTMLScriptElement | null;
     if (existing) {
-      existing.addEventListener("load", () => setReady(true));
+      if (window.google?.maps?.places) {
+        setReady(true);
+      } else {
+        const onLoad = () => setReady(true);
+        existing.addEventListener("load", onLoad, { once: true });
+        return () => existing.removeEventListener("load", onLoad);
+      }
       return;
     }
 

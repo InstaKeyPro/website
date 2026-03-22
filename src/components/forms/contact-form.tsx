@@ -9,23 +9,7 @@ import {
 } from "@/components/ui/address-autocomplete";
 import { submitContact, type ContactActionResult } from "@/app/actions/contact";
 import { cn } from "@/lib/utils";
-
-const SERVICES = [
-  "Car Lockout",
-  "Lost Car Key / Key Replacement",
-  "Key Fob Programming",
-  "Transponder Key",
-  "Ignition Repair",
-  "House Lockout",
-  "Lock Rekey",
-  "Lock Installation",
-  "Deadbolt Upgrade",
-  "Commercial Lockout",
-  "Master Key System",
-  "Access Control",
-  "Smart Lock Installation",
-  "Other",
-];
+import { SITE, SERVICE_NAMES } from "@/lib/constants";
 
 interface ContactFormProps {
   isCompact?: boolean;
@@ -33,30 +17,27 @@ interface ContactFormProps {
 
 export function ContactForm({ isCompact = false }: ContactFormProps) {
   const formRef = useRef<HTMLFormElement>(null);
+  const placeDataRef = useRef<{ lat?: number; lng?: number; place_id?: string }>({});
   const [isPending, startTransition] = useTransition();
   const [result, setResult] = useState<ContactActionResult | null>(null);
-  const [placeData, setPlaceData] = useState<{
-    lat?: number;
-    lng?: number;
-    place_id?: string;
-  }>({});
 
   function handlePlaceSelect(p: PlaceResult) {
-    setPlaceData({ lat: p.lat, lng: p.lng, place_id: p.place_id });
+    placeDataRef.current = { lat: p.lat, lng: p.lng, place_id: p.place_id };
   }
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    if (placeData.lat != null) formData.set("lat", String(placeData.lat));
-    if (placeData.lng != null) formData.set("lng", String(placeData.lng));
-    if (placeData.place_id) formData.set("place_id", placeData.place_id);
+    const pd = placeDataRef.current;
+    if (pd.lat != null) formData.set("lat", String(pd.lat));
+    if (pd.lng != null) formData.set("lng", String(pd.lng));
+    if (pd.place_id) formData.set("place_id", pd.place_id);
     startTransition(async () => {
       const res = await submitContact(formData);
       setResult(res);
       if (res.success) {
         formRef.current?.reset();
-        setPlaceData({});
+        placeDataRef.current = {};
       }
     });
   }
@@ -217,7 +198,7 @@ export function ContactForm({ isCompact = false }: ContactFormProps) {
             <option value="" disabled>
               Select a service...
             </option>
-            {SERVICES.map((s) => (
+            {SERVICE_NAMES.map((s) => (
               <option key={s} value={s}>
                 {s}
               </option>
@@ -305,7 +286,7 @@ export function ContactForm({ isCompact = false }: ContactFormProps) {
         </Button>
         {isCompact && (
           <Button asChild variant="secondary" size="lg">
-            <a href="tel:+18132954321">
+            <a href={SITE.phoneTel}>
               <Phone className="h-5 w-5" aria-hidden="true" />
               Call Now
             </a>
