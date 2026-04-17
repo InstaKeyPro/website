@@ -115,7 +115,7 @@ export function ContactForm({ isCompact = false }: ContactFormProps) {
             type="tel"
             required
             autoComplete="tel"
-            placeholder="(954) 555-0100"
+            placeholder="(813) 555-0100"
             disabled={isPending}
             className={cn(
               "w-full rounded-lg border px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue-light transition-colors",
