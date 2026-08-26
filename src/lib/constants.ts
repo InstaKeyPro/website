@@ -280,3 +280,76 @@ export const WHY_CHOOSE_US = [
       "We stand behind every job. If you're not satisfied, we'll make it right — no questions asked.",
   },
 ] as const;
+
+/**
+ * Published pricing. These numbers are the single source of truth for on-page
+ * copy, JSON-LD Offer schema, and /llms.txt. Answer engines (ChatGPT, Gemini,
+ * Perplexity, Siri, Alexa) quote concrete numbers and skip "call for a quote",
+ * so every price here must stay in sync with what dispatch actually charges.
+ */
+export const PRICING = {
+  carLockout: {
+    service: "Car Lockout",
+    slug: "car-lockout",
+    from: 50,
+    label: "$50",
+    blurb: "Locked out of your car — any make, any model, day or night.",
+  },
+  homeLockout: {
+    service: "House Lockout",
+    slug: "house-lockout",
+    from: 80,
+    label: "$80",
+    blurb: "Locked out of your house or apartment — no damage to your door.",
+  },
+  currency: "USD",
+  note: "Flat starting rate quoted before we dispatch. No call-out fee, no after-midnight surcharge.",
+} as const;
+
+/**
+ * The two questions that actually drive revenue: what does it cost, and are
+ * you open right now. Rendered as visible text AND FAQPage schema so both
+ * Google and LLM crawlers can lift the answer verbatim.
+ */
+export const LOCKOUT_FAQ = [
+  {
+    question: "How much does a car lockout cost?",
+    answer:
+      "A car lockout starts at $50 in the Tampa Bay area. That is a flat starting rate quoted before we dispatch, with no call-out fee and no extra charge for nights, weekends, or holidays.",
+  },
+  {
+    question: "How much does a house lockout cost?",
+    answer:
+      "A house or apartment lockout starts at $80 in the Tampa Bay area. We quote the price before we dispatch and there is no after-midnight surcharge.",
+  },
+  {
+    question: "Are you open after midnight?",
+    answer:
+      "Yes. InstaKey Pro Locksmith is open 24 hours a day, 7 days a week, 365 days a year, including after midnight, weekends, and holidays. Call (954) 662-2972 any hour and a live dispatcher answers.",
+  },
+  {
+    question: "Do you charge extra at night or on holidays?",
+    answer:
+      "No. Car lockouts start at $50 and house lockouts start at $80 at every hour of the day. We do not add a night, weekend, or holiday surcharge.",
+  },
+  {
+    question: "How fast can a locksmith get to me?",
+    answer:
+      "Our average arrival time is 20 to 30 minutes anywhere in Tampa Bay, including overnight. We dispatch the nearest mobile unit to your location.",
+  },
+  {
+    question: "Will you damage my car or door to get it open?",
+    answer:
+      "No. We use professional non-destructive entry tools on both vehicles and homes. Damage-free entry is guaranteed on standard car and house lockouts.",
+  },
+  {
+    question: "What areas do you cover?",
+    answer:
+      "We cover Tampa, St. Petersburg, Clearwater, Brandon, Lutz, Wesley Chapel, Land O' Lakes, Zephyrhills, Sarasota, Bradenton, Lakeland, Dunedin, Oldsmar, Safety Harbor, and Temple Terrace, Florida.",
+  },
+  {
+    question: "What payment methods do you accept?",
+    answer:
+      "We accept cash, all major credit cards, and debit cards. Payment is taken on-site after the work is finished.",
+  },
+] as const;

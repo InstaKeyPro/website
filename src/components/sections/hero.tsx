@@ -2,13 +2,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { Phone, ArrowRight, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { SITE } from "@/lib/constants";
+import { SITE, PRICING } from "@/lib/constants";
 
 const TRUST_POINTS = [
-  "30-Min Emergency Response",
-  "Licensed & Insured",
-  "Upfront Pricing",
-  "Available 24/7/365",
+  "Open after midnight",
+  "No night or holiday surcharge",
+  "20-30 min arrival",
+  "Damage-free entry",
 ];
 
 export function Hero() {
@@ -53,20 +53,27 @@ export function Hero() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-orange opacity-75" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-orange" />
               </span>
-              Available 24/7 – Emergency Response
+              Open now — 24 hours, every night
             </div>
 
-            <h1 className="text-white font-extrabold mb-4 leading-tight">
-              24/7 Emergency
-              <span className="block text-brand-orange">Locksmith Services</span>
+            <h1 className="speakable-headline text-white font-extrabold mb-4 leading-tight">
+              24 Hour Locksmith in Tampa Bay
+              <span className="block text-brand-orange">
+                Car Lockout ${PRICING.carLockout.from} · House Lockout $
+                {PRICING.homeLockout.from}
+              </span>
             </h1>
 
-            <p className="text-xl text-blue-100 mb-4 max-w-lg">
-              {SITE.tagline}
+            <p className="speakable-answer text-xl text-blue-100 mb-4 max-w-lg">
+              Locked out at 2 AM? We answer. A car lockout starts at $
+              {PRICING.carLockout.from} and a house lockout starts at $
+              {PRICING.homeLockout.from} — the same price after midnight, on
+              weekends, and on holidays.
             </p>
             <p className="text-blue-200 mb-8 max-w-lg">
-              Locked out? Lost your keys? InstaKey Pro Locksmith is Tampa Bay&apos;s
-              most trusted mobile locksmith — serving you fast, wherever you are.
+              InstaKey Pro is a mobile locksmith covering all of Tampa Bay. We come
+              to you, quote the price before we dispatch, and open your car or door
+              without damaging it.
             </p>
 
             {/* Trust points */}
@@ -105,10 +112,10 @@ export function Hero() {
               <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-3xl p-8 text-white">
                 <div className="grid grid-cols-2 gap-6">
                   {[
-                    { value: "24/7", label: "Emergency Service" },
-                    { value: "30min", label: "Avg Response Time" },
-                    { value: "5★", label: "Google Rating" },
-                    { value: "247+", label: "Happy Customers" },
+                    { value: "$50", label: "Car Lockout, from" },
+                    { value: "$80", label: "House Lockout, from" },
+                    { value: "24/7", label: "Open, incl. after midnight" },
+                    { value: "30min", label: "Avg Arrival Time" },
                   ].map(({ value, label }) => (
                     <div key={label} className="text-center p-4 bg-white/10 rounded-2xl">
                       <div className="text-3xl font-extrabold text-brand-orange mb-1">

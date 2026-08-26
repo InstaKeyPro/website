@@ -22,12 +22,17 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.baseUrl),
   title: {
-    default: `${SITE.name} | 24/7 Emergency Locksmith Tampa Bay`,
+    default: "24 Hour Locksmith Tampa | Car Lockout $50, House Lockout $80",
     template: `%s | ${SITE.name}`,
   },
   description:
-    "InstaKey Pro Locksmith — Tampa Bay's trusted 24/7 mobile locksmith. Car lockouts, key replacement, residential, commercial & smart lock services. Fast response, licensed & insured.",
+    "Locked out in Tampa Bay? Car lockouts from $50, house lockouts from $80. Open 24 hours including after midnight, weekends and holidays with no surcharge. 20-30 minute arrival. Call (954) 662-2972.",
   keywords: [
+    "24 hour locksmith Tampa",
+    "locksmith open now",
+    "locksmith after midnight",
+    "car lockout price",
+    "house lockout price",
     "locksmith near me",
     "emergency locksmith",
     "car lockout",
@@ -58,9 +63,9 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: SITE.baseUrl,
     siteName: SITE.name,
-    title: `${SITE.name} | 24/7 Emergency Locksmith Tampa Bay`,
+    title: "24 Hour Locksmith Tampa | Car Lockout $50, House Lockout $80",
     description:
-      "Tampa Bay's trusted 24/7 mobile locksmith. Car lockouts, key replacement, residential, commercial & smart lock services.",
+      "Car lockouts from $50, house lockouts from $80. Open 24 hours across Tampa Bay including after midnight, with no night or holiday surcharge.",
     images: [
       {
         url: "/images/og-image.jpg",
@@ -72,9 +77,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SITE.name} | 24/7 Emergency Locksmith`,
+    title: "24 Hour Locksmith Tampa | Car Lockout $50, House Lockout $80",
     description:
-      "Tampa Bay's trusted 24/7 mobile locksmith. Fast response, upfront pricing, licensed & insured.",
+      "Car lockout $50, house lockout $80. Open 24 hours across Tampa Bay, no after-midnight surcharge. 20-30 min arrival.",
     images: ["/images/og-image.jpg"],
   },
   alternates: {

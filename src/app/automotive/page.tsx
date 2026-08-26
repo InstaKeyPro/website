@@ -6,19 +6,23 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ContactSection } from "@/components/sections/contact-section";
 import { ServiceSchema, FAQSchema } from "@/components/seo/json-ld";
-import { SERVICES, SITE } from "@/lib/constants";
+import { LockoutPricing } from "@/components/sections/lockout-pricing";
+import { SERVICES, SITE, PRICING } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Automotive Locksmith Tampa Bay – Car Lockout & Key Replacement",
+  title: "Car Lockout Tampa from $50 | 24 Hour Auto Locksmith",
   description:
-    "24/7 automotive locksmith services in Tampa Bay. Car lockouts, lost key replacement, key fob programming, transponder keys & ignition repair. Fast mobile service — we come to you!",
+    "Locked out of your car in Tampa Bay? Car lockouts from $50, open 24 hours including after midnight — no night surcharge. Lost key replacement, fob programming, ignition repair. 20-30 min arrival. Call (954) 662-2972.",
   keywords: [
-    "automotive locksmith Tampa",
-    "car lockout service",
+    "car lockout Tampa",
+    "car lockout price",
+    "car lockout service near me",
+    "24 hour car locksmith Tampa",
+    "locked keys in car",
+    "unlock car door service Tampa",
     "lost car key replacement Tampa",
     "key fob programming Tampa",
-    "transponder key Tampa",
-    "car locksmith near me",
+    "auto locksmith open now",
   ],
   openGraph: {
     title: "Automotive Locksmith Tampa Bay | InstaKey Pro",
@@ -44,14 +48,14 @@ const FAQ_ITEMS = [
       "Absolutely. We program key fobs and transponder chips for virtually all major vehicle makes and models at a fraction of the dealership cost.",
   },
   {
-    question: "Is your automotive locksmith service available 24/7?",
+    question: "Are you open after midnight for car lockouts?",
     answer:
-      "Yes, we operate 24 hours a day, 7 days a week, 365 days a year. Emergencies don't keep business hours — and neither do we.",
+      "Yes. We run 24 hours a day, 7 days a week, 365 days a year, including after midnight, weekends, and holidays. A car lockout is $50 at 3 AM exactly as it is at 3 PM. Call (954) 662-2972 and a live dispatcher answers.",
   },
   {
     question: "How much does a car lockout service cost?",
     answer:
-      "Our pricing starts at a flat rate with no hidden fees. The exact price depends on your vehicle type and situation. Call us for a free quote before we arrive.",
+      "A car lockout starts at $50 anywhere in Tampa Bay. That is a flat starting rate quoted before we dispatch, with no call-out fee and no extra charge for nights, weekends, or holidays.",
   },
 ];
 
@@ -64,6 +68,7 @@ export default function AutomotivePage() {
         name="Automotive Locksmith Service"
         description="24/7 mobile automotive locksmith services including car lockouts, key replacement, key fob programming, and ignition repair in Tampa Bay, FL."
         url={`${SITE.baseUrl}/automotive`}
+        priceFrom={PRICING.carLockout.from}
       />
       <FAQSchema items={FAQ_ITEMS} />
 
@@ -81,6 +86,8 @@ export default function AutomotivePage() {
         ]}
         breadcrumb="Automotive Locksmith"
       />
+
+      <LockoutPricing />
 
       {/* Services Grid */}
       <section className="section bg-white" aria-labelledby="auto-services-heading">
