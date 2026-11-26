@@ -10,6 +10,7 @@ import { LockoutPricing } from "@/components/sections/lockout-pricing";
 import { SERVICES, SITE, PRICING } from "@/lib/constants";
 
 export const metadata: Metadata = {
+  openGraph: { url: `${SITE.baseUrl}/residential` },
   alternates: { canonical: `${SITE.baseUrl}/residential` },
   title: "House Lockout Tampa from $80 | 24 Hour Home Locksmith",
   description:

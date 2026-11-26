@@ -38,7 +38,7 @@ export const SERVICES = {
       {
         name: "Key Fob Programming",
         description:
-          "Factory-quality remote key fob programming for all major car brands at a fraction of dealer prices.",
+          "Key fob programming. Call with your vehicle year, make, and model to confirm compatibility and pricing.",
       },
       {
         name: "Transponder Keys",
@@ -67,7 +67,7 @@ export const SERVICES = {
       {
         name: "House Lockout",
         description:
-          "Locked out of your home? We'll have you back inside fast without damaging your door or frame.",
+          "House and apartment lockout service. The technician will discuss entry options before work begins.",
       },
       {
         name: "Lock Rekey",
@@ -248,14 +248,14 @@ export const PRICING = {
     slug: "car-lockout",
     from: 50,
     label: "$50",
-    blurb: "Locked out of your car — any make, any model, day or night.",
+    blurb: "Mobile car lockout service. Call to confirm vehicle compatibility and availability.",
   },
   homeLockout: {
     service: "House Lockout",
     slug: "house-lockout",
     from: 80,
     label: "$80",
-    blurb: "Locked out of your house or apartment — no damage to your door.",
+    blurb: "Mobile house and apartment lockout service. Entry methods depend on the lock and door condition.",
   },
   currency: "USD",
   note: "Flat starting rate quoted before we dispatch. No call-out fee, no after-midnight surcharge.",

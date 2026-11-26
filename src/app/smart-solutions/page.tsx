@@ -9,6 +9,7 @@ import { ServiceSchema } from "@/components/seo/json-ld";
 import { SERVICES, SITE } from "@/lib/constants";
 
 export const metadata: Metadata = {
+  openGraph: { url: `${SITE.baseUrl}/smart-solutions` },
   alternates: { canonical: `${SITE.baseUrl}/smart-solutions` },
   title: "Smart Lock Installation Tampa Bay – Keyless & WiFi Lock Solutions",
   description:

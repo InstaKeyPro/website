@@ -5,6 +5,7 @@ import { ContactForm } from "@/components/forms/contact-form";
 import { SITE } from "@/lib/constants";
 
 export const metadata: Metadata = {
+  openGraph: { url: `${SITE.baseUrl}/contact` },
   title: "Contact InstaKey Pro Locksmith | 24/7 Emergency Service Tampa Bay",
   description:
     "Contact InstaKey Pro Locksmith for 24/7 emergency locksmith services in Tampa Bay. Call or fill out our form for fast, professional lock & key solutions.",

@@ -6,6 +6,7 @@ import { slugify } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
+  openGraph: { url: `${SITE.baseUrl}/service-areas` },
   alternates: { canonical: `${SITE.baseUrl}/service-areas` },
   title: "Locksmith Service Areas – Tampa Bay, FL & Surrounding Cities",
   description:
