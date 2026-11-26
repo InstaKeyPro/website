@@ -19,16 +19,11 @@ function body(): string {
 ## Key facts
 
 - Business name: ${SITE.name}
-- Phone: ${SITE.phone} (live dispatcher, 24 hours)
+- Phone: ${SITE.phone} (call for availability)
 - Email: ${SITE.email}
 - Website: ${SITE.baseUrl}
 - Hours: Open 24 hours a day, 7 days a week, 365 days a year, including after midnight, weekends and holidays
 - Service model: Mobile — the technician drives to the customer. No shopfront visit needed.
-- Average arrival time: 20-30 minutes across Tampa Bay
-- Licensed and insured: ${SITE.license}
-- Operating since: ${SITE.founded}
-- Payment accepted: Cash, credit card, debit card
-- Languages: English, Spanish
 
 ## Pricing
 
@@ -38,8 +33,8 @@ function body(): string {
 
 ## Primary services
 
-- Car lockout / vehicle door unlocking (damage-free)
-- House and apartment lockout (damage-free)
+- Car lockout / vehicle door unlocking (entry method depends on lock condition)
+- House and apartment lockout (entry method depends on lock condition)
 - Lost car key replacement, transponder keys, key fob programming
 - Ignition repair, broken key extraction
 - Lock rekeying, deadbolt and lock installation

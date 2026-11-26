@@ -7,8 +7,8 @@ import { SITE, PRICING } from "@/lib/constants";
 const TRUST_POINTS = [
   "Open after midnight",
   "No night or holiday surcharge",
-  "20-30 min arrival",
-  "Damage-free entry",
+  "Call for an arrival estimate",
+  "Careful entry methods",
 ];
 
 export function Hero() {
@@ -128,7 +128,7 @@ export function Hero() {
 
                 <div className="mt-6 p-4 bg-brand-orange/20 border border-brand-orange/30 rounded-2xl">
                   <p className="text-center text-sm font-medium">
-                    🔑 Serving Tampa Bay &amp; 19 Surrounding Cities
+                    🔑 Serving Tampa Bay &amp; Surrounding Communities
                   </p>
                 </div>
               </div>

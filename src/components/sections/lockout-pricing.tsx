@@ -10,7 +10,7 @@ const TIERS = [
 const GUARANTEES = [
   { Icon: Clock, text: "Open 24 hours — after midnight, weekends, holidays" },
   { Icon: BadgeDollarSign, text: "No call-out fee and no night surcharge" },
-  { Icon: ShieldCheck, text: "Damage-free entry, price quoted before we dispatch" },
+  { Icon: ShieldCheck, text: "Careful entry methods, price quoted before we dispatch" },
 ];
 
 /**

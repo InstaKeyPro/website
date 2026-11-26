@@ -4,12 +4,14 @@ import { MapPin, Phone, ArrowRight } from "lucide-react";
 import { SERVICE_AREAS, SITE } from "@/lib/constants";
 import { slugify } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { LocalBusinessSchema } from "@/components/seo/json-ld";
 
 export const metadata: Metadata = {
+  openGraph: {
+    images: [{ url: "/images/van.jpg", alt: `${SITE.name} mobile service` }], url: `${SITE.baseUrl}/service-areas` },
+  alternates: { canonical: `${SITE.baseUrl}/service-areas` },
   title: "Locksmith Service Areas – Tampa Bay, FL & Surrounding Cities",
   description:
-    "InstaKey Pro Locksmith serves Tampa Bay and 19+ surrounding communities including Tampa, St. Petersburg, Clearwater, Wesley Chapel, Land O' Lakes, and more. 24/7 mobile locksmith.",
+    "InstaKey Pro Locksmith serves Tampa Bay and surrounding communities including Tampa, St. Petersburg, Clearwater, Wesley Chapel, Land O' Lakes, and more. 24/7 mobile locksmith.",
   keywords: [
     "locksmith service areas Tampa Bay",
     "mobile locksmith Tampa Florida",
@@ -22,7 +24,6 @@ export const metadata: Metadata = {
 export default function ServiceAreasPage() {
   return (
     <>
-      <LocalBusinessSchema />
 
       {/* Hero */}
       <section className="bg-gradient-to-br from-brand-blue to-brand-blue-light py-20 text-white">
@@ -49,7 +50,7 @@ export default function ServiceAreasPage() {
               Locksmith Service Areas
             </h1>
             <p className="text-blue-100 text-lg leading-relaxed">
-              We proudly serve Tampa Bay and 19 surrounding communities. Our mobile
+              We proudly serve Tampa Bay and surrounding communities. Our mobile
               locksmiths are strategically positioned to reach you fast — wherever
               you are in the greater Tampa Bay area.
             </p>

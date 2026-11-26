@@ -5,6 +5,8 @@ import { ContactForm } from "@/components/forms/contact-form";
 import { SITE } from "@/lib/constants";
 
 export const metadata: Metadata = {
+  openGraph: {
+    images: [{ url: "/images/van.jpg", alt: `${SITE.name} mobile service` }], url: `${SITE.baseUrl}/contact` },
   title: "Contact InstaKey Pro Locksmith | 24/7 Emergency Service Tampa Bay",
   description:
     "Contact InstaKey Pro Locksmith for 24/7 emergency locksmith services in Tampa Bay. Call or fill out our form for fast, professional lock & key solutions.",
@@ -135,9 +137,9 @@ export default function ContactPage() {
                 <h3 className="font-semibold text-brand-blue text-sm mb-4">Why Trust Us?</h3>
                 <ul className="space-y-2">
                   {[
-                    { Icon: Shield, text: "Licensed & Insured" },
-                    { Icon: Clock, text: "20–30 Min Response Time" },
-                    { Icon: MapPin, text: "19 Cities Served" },
+                    { Icon: Shield, text: "Professional Mobile Service" },
+                    { Icon: Clock, text: "Call for an Arrival Estimate" },
+                    { Icon: MapPin, text: "Tampa Bay Service" },
                   ].map(({ Icon, text }) => (
                     <li key={text} className="flex items-center gap-2 text-sm text-gray-600">
                       <Icon className="h-4 w-4 text-brand-orange" aria-hidden="true" />
@@ -167,7 +169,7 @@ export default function ContactPage() {
         <div className="container text-center">
           <h2 className="text-brand-blue mb-3">Serving All of Tampa Bay</h2>
           <p className="text-gray-600 mb-6 text-sm max-w-xl mx-auto">
-            We provide fast, mobile locksmith service across 19 cities. Find your city below.
+            We provide fast, mobile locksmith service across Tampa Bay. Find your city below.
           </p>
           <Link
             href="/service-areas"

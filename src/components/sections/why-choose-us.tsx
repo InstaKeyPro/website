@@ -57,25 +57,6 @@ export function WhyChooseUs() {
           })}
         </div>
 
-        {/* Bottom stats bar */}
-        <div className="mt-12 grid grid-cols-2 lg:grid-cols-4 gap-4">
-          {[
-            { number: "6+", label: "Years in Business" },
-            { number: "247+", label: "Five-Star Reviews" },
-            { number: "19", label: "Cities Served" },
-            { number: "100%", label: "Satisfaction Rate" },
-          ].map(({ number, label }) => (
-            <div
-              key={label}
-              className="text-center bg-white/10 rounded-xl p-4 border border-white/20"
-            >
-              <div className="text-3xl font-extrabold text-brand-orange mb-1">
-                {number}
-              </div>
-              <div className="text-sm text-blue-100">{label}</div>
-            </div>
-          ))}
-        </div>
       </div>
     </section>
   );

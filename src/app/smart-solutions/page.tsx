@@ -9,6 +9,9 @@ import { ServiceSchema } from "@/components/seo/json-ld";
 import { SERVICES, SITE } from "@/lib/constants";
 
 export const metadata: Metadata = {
+  openGraph: {
+    images: [{ url: "/images/van.jpg", alt: `${SITE.name} mobile service` }], url: `${SITE.baseUrl}/smart-solutions` },
+  alternates: { canonical: `${SITE.baseUrl}/smart-solutions` },
   title: "Smart Lock Installation Tampa Bay – Keyless & WiFi Lock Solutions",
   description:
     "Professional smart lock installation in Tampa Bay. Keypad locks, WiFi smart locks, Schlage Encode, Yale, August & more. Mobile-controlled access for homes and businesses.",
@@ -46,10 +49,10 @@ export default function SmartSolutionsPage() {
       <ServicePageHero
         title="Smart Lock & Keyless Entry Solutions"
         subtitle="Smart Home Security"
-        description="Upgrade your home or business with cutting-edge smart lock technology. We install, program, and troubleshoot all major smart lock brands across Tampa Bay."
+        description="Upgrade your home or business with cutting-edge smart lock technology. Call to discuss installation, programming, and troubleshooting for your smart lock model in Tampa Bay."
         Icon={Smartphone}
         highlights={[
-          "All major smart lock brands installed",
+          "Call to confirm smart lock compatibility",
           "Keypad, Bluetooth, WiFi & Z-Wave options",
           "App setup and user training included",
           "Integration with smart home systems",

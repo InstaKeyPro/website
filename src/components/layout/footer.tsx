@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Phone, Mail, MapPin, Clock, Shield } from "lucide-react";
+import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { SITE, NAV_LINKS, SERVICE_AREAS } from "@/lib/constants";
 
 export function Footer() {
@@ -27,10 +27,6 @@ export function Footer() {
               Professional mobile locksmith services throughout Tampa Bay and
               surrounding Florida communities.
             </p>
-            <div className="flex items-center gap-2 text-sm text-blue-200 mb-2">
-              <Shield className="h-4 w-4 flex-shrink-0 text-brand-orange" />
-              <span>{SITE.license}</span>
-            </div>
             <div className="flex items-center gap-2 text-sm text-blue-200">
               <Clock className="h-4 w-4 flex-shrink-0 text-brand-orange" />
               <span>{SITE.hours}</span>

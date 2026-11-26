@@ -10,9 +10,10 @@ import { LockoutPricing } from "@/components/sections/lockout-pricing";
 import { SERVICES, SITE, PRICING } from "@/lib/constants";
 
 export const metadata: Metadata = {
+  alternates: { canonical: `${SITE.baseUrl}/automotive` },
   title: "Car Lockout Tampa from $50 | 24 Hour Auto Locksmith",
   description:
-    "Locked out of your car in Tampa Bay? Car lockouts from $50, open 24 hours including after midnight — no night surcharge. Lost key replacement, fob programming, ignition repair. 20-30 min arrival. Call (954) 662-2972.",
+    "Locked out of your car in Tampa Bay? Car lockouts from $50, open 24 hours including after midnight — no night surcharge. Lost key replacement, fob programming, ignition repair. Call for an arrival estimate. Call (954) 662-2972.",
   keywords: [
     "car lockout Tampa",
     "car lockout price",
@@ -25,7 +26,9 @@ export const metadata: Metadata = {
     "auto locksmith open now",
   ],
   openGraph: {
+    images: [{ url: "/images/van.jpg", alt: `${SITE.name} mobile service` }],
     title: "Automotive Locksmith Tampa Bay | InstaKey Pro",
+    url: `${SITE.baseUrl}/automotive`,
     description:
       "24/7 car lockout & key replacement service. We come to you anywhere in Tampa Bay.",
   },
@@ -35,7 +38,7 @@ const FAQ_ITEMS = [
   {
     question: "How long does it take for you to arrive for a car lockout?",
     answer:
-      "Our typical response time is 20–30 minutes anywhere in the Tampa Bay area. We have mobile units strategically positioned to reach you as fast as possible.",
+      "Arrival depends on location, traffic, and technician availability. Call for a current estimate.",
   },
   {
     question: "Can you replace car keys without the original?",
@@ -45,12 +48,12 @@ const FAQ_ITEMS = [
   {
     question: "Do you program key fobs and transponder keys?",
     answer:
-      "Absolutely. We program key fobs and transponder chips for virtually all major vehicle makes and models at a fraction of the dealership cost.",
+      "We offer key fob and transponder programming. Call with your vehicle year, make, and model to confirm compatibility and get a quote.",
   },
   {
     question: "Are you open after midnight for car lockouts?",
     answer:
-      "Yes. We run 24 hours a day, 7 days a week, 365 days a year, including after midnight, weekends, and holidays. A car lockout is $50 at 3 AM exactly as it is at 3 PM. Call (954) 662-2972 and a live dispatcher answers.",
+      "Yes. We run 24 hours a day, 7 days a week, 365 days a year, including after midnight, weekends, and holidays. Car lockouts start at $50. Call (954) 662-2972 to confirm the final quote and current availability.",
   },
   {
     question: "How much does a car lockout service cost?",
@@ -75,14 +78,14 @@ export default function AutomotivePage() {
       <ServicePageHero
         title="Automotive Locksmith Services"
         subtitle="Automotive Locksmith"
-        description="Locked out of your car? Lost your keys? Our certified automotive locksmiths come to you anywhere in Tampa Bay — fast, professional, and at prices that beat the dealership."
+        description="Locked out of your car? Lost your keys? Our mobile automotive locksmiths come to you anywhere in Tampa Bay — Call to confirm compatibility, availability, and pricing."
         Icon={Car}
         highlights={[
-          "Car lockouts with no damage guarantee",
+          "Car lockout service",
           "Key cutting & programming on-site",
-          "All makes & models — domestic and import",
-          "Cheaper than dealer key replacement",
-          "20–30 minute average arrival time",
+          "Call to confirm vehicle compatibility",
+          "Quote confirmed before dispatch",
+          "Arrival estimate confirmed when you call",
         ]}
         breadcrumb="Automotive Locksmith"
       />
@@ -133,7 +136,7 @@ export default function AutomotivePage() {
             {[
               { step: "1", title: "Call or Request Online", desc: "Contact us 24/7 by phone or web form." },
               { step: "2", title: "Give Your Location", desc: "We pinpoint your location and dispatch the nearest technician." },
-              { step: "3", title: "We Arrive in ~30 Min", desc: "Our mobile unit arrives with all tools needed." },
+              { step: "3", title: "Arrival Estimate Confirmed", desc: "Confirm the arrival estimate and service details before dispatch." },
               { step: "4", title: "Problem Solved", desc: "We unlock your car or cut/program new keys on-site." },
             ].map(({ step, title, desc }) => (
               <div key={step} className="text-center">
