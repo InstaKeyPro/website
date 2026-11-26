@@ -10,9 +10,10 @@ import { LockoutPricing } from "@/components/sections/lockout-pricing";
 import { SERVICES, SITE, PRICING } from "@/lib/constants";
 
 export const metadata: Metadata = {
+  alternates: { canonical: `${SITE.baseUrl}/residential` },
   title: "House Lockout Tampa from $80 | 24 Hour Home Locksmith",
   description:
-    "Locked out of your house in Tampa Bay? House lockouts from $80, open 24 hours including after midnight with no night surcharge. Lock rekeying, deadbolts, key duplication. 20-30 min arrival. Call (954) 662-2972.",
+    "Locked out of your house in Tampa Bay? House lockouts from $80, open 24 hours including after midnight with no night surcharge. Lock rekeying, deadbolts, key duplication. Call for an arrival estimate. Call (954) 662-2972.",
   keywords: [
     "house lockout Tampa",
     "house lockout price",
@@ -30,7 +31,7 @@ const FAQ_ITEMS = [
   {
     question: "How much does a house lockout cost and how fast can you arrive?",
     answer:
-      "A house or apartment lockout starts at $80 anywhere in Tampa Bay, quoted before we dispatch. Typical arrival is 20-30 minutes, and we operate 24 hours a day including after midnight, weekends, and holidays with no surcharge.",
+      "A house or apartment lockout starts at $80 anywhere in Tampa Bay, quoted before we dispatch. Call for an arrival estimate; and we operate 24 hours a day including after midnight, weekends, and holidays with no surcharge.",
   },
   {
     question: "Are you open after midnight for a house lockout?",

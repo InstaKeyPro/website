@@ -10,9 +10,10 @@ import { LockoutPricing } from "@/components/sections/lockout-pricing";
 import { SERVICES, SITE, PRICING } from "@/lib/constants";
 
 export const metadata: Metadata = {
+  alternates: { canonical: `${SITE.baseUrl}/automotive` },
   title: "Car Lockout Tampa from $50 | 24 Hour Auto Locksmith",
   description:
-    "Locked out of your car in Tampa Bay? Car lockouts from $50, open 24 hours including after midnight — no night surcharge. Lost key replacement, fob programming, ignition repair. 20-30 min arrival. Call (954) 662-2972.",
+    "Locked out of your car in Tampa Bay? Car lockouts from $50, open 24 hours including after midnight — no night surcharge. Lost key replacement, fob programming, ignition repair. Call for an arrival estimate. Call (954) 662-2972.",
   keywords: [
     "car lockout Tampa",
     "car lockout price",
@@ -35,7 +36,7 @@ const FAQ_ITEMS = [
   {
     question: "How long does it take for you to arrive for a car lockout?",
     answer:
-      "Our typical response time is 20–30 minutes anywhere in the Tampa Bay area. We have mobile units strategically positioned to reach you as fast as possible.",
+      "Arrival depends on location, traffic, and technician availability. Call for a current estimate.",
   },
   {
     question: "Can you replace car keys without the original?",
@@ -75,14 +76,14 @@ export default function AutomotivePage() {
       <ServicePageHero
         title="Automotive Locksmith Services"
         subtitle="Automotive Locksmith"
-        description="Locked out of your car? Lost your keys? Our certified automotive locksmiths come to you anywhere in Tampa Bay — fast, professional, and at prices that beat the dealership."
+        description="Locked out of your car? Lost your keys? Our mobile automotive locksmiths come to you anywhere in Tampa Bay — fast, professional, and at prices that beat the dealership."
         Icon={Car}
         highlights={[
-          "Car lockouts with no damage guarantee",
+          "Car lockout service",
           "Key cutting & programming on-site",
           "All makes & models — domestic and import",
           "Cheaper than dealer key replacement",
-          "20–30 minute average arrival time",
+          "Arrival estimate confirmed when you call",
         ]}
         breadcrumb="Automotive Locksmith"
       />

@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     template: `%s | ${SITE.name}`,
   },
   description:
-    "Locked out in Tampa Bay? Car lockouts from $50, house lockouts from $80. Open 24 hours including after midnight, weekends and holidays with no surcharge. 20-30 minute arrival. Call (954) 662-2972.",
+    "Locked out in Tampa Bay? Car lockouts from $50, house lockouts from $80. Open 24 hours including after midnight, weekends and holidays with no surcharge. Call for an arrival estimate. Call (954) 662-2972.",
   keywords: [
     "24 hour locksmith Tampa",
     "locksmith open now",
@@ -66,21 +66,14 @@ export const metadata: Metadata = {
     title: "24 Hour Locksmith Tampa | Car Lockout $50, House Lockout $80",
     description:
       "Car lockouts from $50, house lockouts from $80. Open 24 hours across Tampa Bay including after midnight, with no night or holiday surcharge.",
-    images: [
-      {
-        url: "/images/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: `${SITE.name} – Tampa Bay Locksmith`,
-      },
-    ],
+    images: [{ url: "/images/van.jpg", alt: `${SITE.name} mobile service` }],
   },
   twitter: {
     card: "summary_large_image",
     title: "24 Hour Locksmith Tampa | Car Lockout $50, House Lockout $80",
     description:
-      "Car lockout $50, house lockout $80. Open 24 hours across Tampa Bay, no after-midnight surcharge. 20-30 min arrival.",
-    images: ["/images/og-image.jpg"],
+      "Car lockout $50, house lockout $80. Open 24 hours across Tampa Bay, no after-midnight surcharge. Call for an arrival estimate.",
+    images: ["/images/van.jpg"],
   },
   alternates: {
     canonical: SITE.baseUrl,

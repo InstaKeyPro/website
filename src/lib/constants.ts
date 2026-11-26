@@ -6,10 +6,8 @@ export const SITE = {
   phoneTel: "tel:+19546622972",
   email: "info@instakeypro.com",
   address: "Tampa, FL",
-  baseUrl: "https://www.instakeypro.com",
+  baseUrl: "https://instakeypro.com",
   hours: "24/7 – Available Around the Clock",
-  founded: "2018",
-  license: "FL Lic. #LK-2024-TB",
 } as const;
 
 export const NAV_LINKS = [
@@ -30,7 +28,7 @@ export const SERVICES = {
       {
         name: "Car Lockout Service",
         description:
-          "Fast, damage-free entry for any make and model. Our technicians arrive in under 30 minutes.",
+          "Mobile car-door unlocking. Call to confirm vehicle compatibility and an arrival estimate.",
       },
       {
         name: "Lost Car Key Replacement",
@@ -176,6 +174,8 @@ export const SERVICE_NAMES = [
 ] as const;
 
 export const SERVICE_AREAS = [
+  { city: "Brandon", state: "FL", zip: "33511", population: "" },
+  { city: "Sun City Center", state: "FL", zip: "33573", population: "" },
   { city: "Tampa", state: "FL", zip: "33601", population: "400000" },
   { city: "St Petersburg", state: "FL", zip: "33701", population: "260000" },
   { city: "Clearwater", state: "FL", zip: "33755", population: "117000" },
@@ -197,63 +197,18 @@ export const SERVICE_AREAS = [
   { city: "Gulf City", state: "FL", zip: "33570", population: "8000" },
 ] as const;
 
-export const TESTIMONIALS = [
-  {
-    name: "Maria G.",
-    location: "Tampa, FL",
-    rating: 5,
-    text: "Locked myself out at 11 PM and InstaKey Pro arrived in 20 minutes. Professional, fast, and very reasonable price. Highly recommend!",
-    service: "Car Lockout",
-  },
-  {
-    name: "David R.",
-    location: "Wesley Chapel, FL",
-    rating: 5,
-    text: "Lost my car key fob and they came to my house to program a new one. Saved me $400 vs the dealership quote. Amazing service!",
-    service: "Key Fob Programming",
-  },
-  {
-    name: "Sandra T.",
-    location: "Clearwater, FL",
-    rating: 5,
-    text: "Had all the locks rekeyed when we moved into our new home. Quick, professional, and gave us 3 sets of keys each. Very happy.",
-    service: "Residential Rekey",
-  },
-  {
-    name: "James M.",
-    location: "St. Petersburg, FL",
-    rating: 5,
-    text: "Installed smart locks throughout our office building. The team was knowledgeable, efficient, and cleaned up everything after. 5 stars.",
-    service: "Smart Lock Installation",
-  },
-  {
-    name: "Lisa K.",
-    location: "Lutz, FL",
-    rating: 5,
-    text: "Called at 7 AM after breaking my key in the ignition. They were there by 7:30 and had it fixed in 30 minutes. Life savers!",
-    service: "Broken Key Extraction",
-  },
-  {
-    name: "Carlos B.",
-    location: "Land O' Lakes, FL",
-    rating: 5,
-    text: "Best locksmith in the Tampa area. Fair pricing, they explain everything they're doing, and the work is top quality.",
-    service: "Commercial Locks",
-  },
-] as const;
-
 export const WHY_CHOOSE_US = [
   {
     icon: "Zap",
-    title: "30-Minute Response",
+    title: "Mobile Response",
     description:
       "Our mobile locksmiths are strategically positioned across Tampa Bay to reach you fast — day or night.",
   },
   {
     icon: "Shield",
-    title: "Licensed & Insured",
+    title: "Professional Service",
     description:
-      "All technicians are state-licensed, background-checked, and fully insured for your complete peace of mind.",
+      "Call to discuss your lock and key needs before requesting service.",
   },
   {
     icon: "DollarSign",
@@ -275,9 +230,9 @@ export const WHY_CHOOSE_US = [
   },
   {
     icon: "Award",
-    title: "Satisfaction Guaranteed",
+    title: "Clear Communication",
     description:
-      "We stand behind every job. If you're not satisfied, we'll make it right — no questions asked.",
+      "Discuss the work and quote before service begins.",
   },
 ] as const;
 
@@ -325,7 +280,7 @@ export const LOCKOUT_FAQ = [
   {
     question: "Are you open after midnight?",
     answer:
-      "Yes. InstaKey Pro Locksmith is open 24 hours a day, 7 days a week, 365 days a year, including after midnight, weekends, and holidays. Call (954) 662-2972 any hour and a live dispatcher answers.",
+      "Yes. InstaKey Pro Locksmith is open 24 hours a day, 7 days a week, 365 days a year, including after midnight, weekends, and holidays. Call (954) 662-2972 for current availability.",
   },
   {
     question: "Do you charge extra at night or on holidays?",
@@ -335,17 +290,17 @@ export const LOCKOUT_FAQ = [
   {
     question: "How fast can a locksmith get to me?",
     answer:
-      "Our average arrival time is 20 to 30 minutes anywhere in Tampa Bay, including overnight. We dispatch the nearest mobile unit to your location.",
+      "Arrival time depends on location, traffic, and technician availability. Call for a current estimate before requesting dispatch.",
   },
   {
     question: "Will you damage my car or door to get it open?",
     answer:
-      "No. We use professional non-destructive entry tools on both vehicles and homes. Damage-free entry is guaranteed on standard car and house lockouts.",
+      "Non-destructive entry methods are used where the lock and door condition allow. Discuss the approach with the technician before work begins.",
   },
   {
     question: "What areas do you cover?",
     answer:
-      "We cover Tampa, St. Petersburg, Clearwater, Brandon, Lutz, Wesley Chapel, Land O' Lakes, Zephyrhills, Sarasota, Bradenton, Lakeland, Dunedin, Oldsmar, Safety Harbor, and Temple Terrace, Florida.",
+      "We cover Tampa, St. Petersburg, Clearwater, Brandon, Sun City Center, Lutz, Wesley Chapel, Land O' Lakes, Zephyrhills, Sarasota, Bradenton, Lakeland, Dunedin, Oldsmar, Safety Harbor, and Temple Terrace, Florida.",
   },
   {
     question: "What payment methods do you accept?",

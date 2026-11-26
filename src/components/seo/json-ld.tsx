@@ -5,7 +5,7 @@ function JsonLd({ data }: { data: object }) {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, "\\u003c") }}
     />
   );
 }
@@ -44,7 +44,6 @@ const LOCKOUT_OFFERS = [PRICING.carLockout, PRICING.homeLockout].map((p) => ({
     "@type": "PriceSpecification" as const,
     minPrice: p.from,
     priceCurrency: PRICING.currency,
-    valueAddedTaxIncluded: false,
   },
   availability: "https://schema.org/InStock",
   availableAtOrFrom: { "@type": "Place" as const, name: "Tampa Bay, FL" },
@@ -56,17 +55,7 @@ const LOCKOUT_OFFERS = [PRICING.carLockout, PRICING.homeLockout].map((p) => ({
   },
 }));
 
-interface LocalBusinessSchemaProps {
-  city?: string;
-  state?: string;
-  url?: string;
-}
-
-export function LocalBusinessSchema({
-  city = "Tampa",
-  state = "FL",
-  url,
-}: LocalBusinessSchemaProps) {
+export function LocalBusinessSchema() {
   return (
     <JsonLd
       data={{
@@ -77,59 +66,31 @@ export function LocalBusinessSchema({
         alternateName: SITE.shortName,
         image: `${SITE.baseUrl}/images/logo.png`,
         logo: `${SITE.baseUrl}/images/logo.png`,
-        url: url ?? SITE.baseUrl,
+        url: SITE.baseUrl,
         telephone: TEL,
         email: SITE.email,
-        foundingDate: SITE.founded,
-        description: `24 hour emergency locksmith in ${city}, ${state}. Car lockouts from $${PRICING.carLockout.from} and house lockouts from $${PRICING.homeLockout.from}, with no extra charge after midnight, on weekends, or on holidays. Average arrival 20-30 minutes.`,
-        address: {
-          "@type": "PostalAddress",
-          addressLocality: city,
-          addressRegion: state,
-          addressCountry: "US",
-        },
-        geo: {
-          "@type": "GeoCoordinates",
-          latitude: "27.9506",
-          longitude: "-82.4572",
-        },
+        description: `24 hour emergency locksmith serving Tampa Bay, Florida. Car lockouts from $${PRICING.carLockout.from} and house lockouts from $${PRICING.homeLockout.from}, with no extra charge after midnight, on weekends, or on holidays. Call for current availability and an arrival estimate.`,
         openingHours: "Mo-Su 00:00-23:59",
         openingHoursSpecification: [ALWAYS_OPEN],
-        priceRange: `$${PRICING.carLockout.from}-$${PRICING.homeLockout.from}`,
+
         currenciesAccepted: PRICING.currency,
-        paymentAccepted: "Cash, Credit Card, Debit Card",
+
         areaServed: AREA_SERVED,
-        serviceArea: {
-          "@type": "GeoCircle",
-          geoMidpoint: {
-            "@type": "GeoCoordinates",
-            latitude: "27.9506",
-            longitude: "-82.4572",
-          },
-          geoRadius: "60000",
-        },
         makesOffer: LOCKOUT_OFFERS,
         hasOfferCatalog: {
           "@type": "OfferCatalog",
           name: "Emergency Lockout Services",
           itemListElement: LOCKOUT_OFFERS,
         },
-        knowsLanguage: ["en", "es"],
-        hasMap: `https://maps.google.com/?q=${encodeURIComponent(
-          `${SITE.name} ${city} ${state}`
-        )}`,
+
         contactPoint: {
           "@type": "ContactPoint",
           telephone: TEL,
           contactType: "emergency",
           areaServed: "US-FL",
-          availableLanguage: ["en", "es"],
+
           hoursAvailable: ALWAYS_OPEN,
         },
-        sameAs: [
-          "https://www.facebook.com/instakeypro",
-          "https://www.yelp.com/biz/instakey-pro-locksmith",
-        ],
       }}
     />
   );

@@ -6,7 +6,7 @@ import { SERVICE_AREAS, SITE } from "@/lib/constants";
 import { slugify } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { LocalBusinessSchema } from "@/components/seo/json-ld";
+
 import { ContactSection } from "@/components/sections/contact-section";
 
 interface PageProps {
@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!area) return {};
 
   const title = `Locksmith in ${area.city}, ${area.state} | 24/7 Emergency Service`;
-  const description = `InstaKey Pro Locksmith provides 24/7 mobile locksmith services in ${area.city}, FL. Car lockouts, key replacement, residential locks, commercial security & smart lock installation. Fast response — licensed & insured.`;
+  const description = `InstaKey Pro Locksmith provides 24/7 mobile locksmith services in ${area.city}, FL. Car lockouts, key replacement, residential locks, commercial security & smart lock installation. Call for current availability.`;
 
   return {
     title,
@@ -69,7 +69,6 @@ export default function CityPage({ params }: PageProps) {
 
   return (
     <>
-      <LocalBusinessSchema city={city} state={state} url={`${SITE.baseUrl}/service-areas/${params.city}`} />
 
       {/* Hero */}
       <section className="bg-gradient-to-br from-brand-blue to-brand-blue-light py-20 text-white relative overflow-hidden">
@@ -110,8 +109,8 @@ export default function CityPage({ params }: PageProps) {
 
               <ul className="space-y-2 mb-8">
                 {[
-                  `Licensed & insured locksmith serving ${city}, FL`,
-                  "20–30 minute average response time",
+                  `Mobile locksmith serving ${city}, FL`,
+                  "Call for current availability",
                   "Automotive, residential & commercial services",
                   "Upfront flat-rate pricing — no surprises",
                 ].map((point) => (
@@ -143,11 +142,11 @@ export default function CityPage({ params }: PageProps) {
               <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-3xl p-8">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-3 h-3 rounded-full bg-green-400 animate-pulse" />
-                  <span className="font-semibold text-white">Technician Available in {city}</span>
+                  <span className="font-semibold text-white">Mobile Service in {city}</span>
                 </div>
                 <div className="space-y-3">
                   {[
-                    { label: "Response Time", value: "~30 min" },
+                    { label: "Response Time", value: "Call for estimate" },
                     { label: "Availability", value: "24/7/365" },
                     { label: "Coverage", value: `${city} & Nearby` },
                     { label: "Pricing", value: "Flat Rate" },
@@ -179,8 +178,7 @@ export default function CityPage({ params }: PageProps) {
               Locksmith Services in {city}, FL
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Our certified technicians in {city} handle all types of lock and key
-              emergencies — with no additional travel fees.
+              Call to discuss lockouts, keys, and lock services in {city}. Confirm availability and the full quote before dispatch.
             </p>
           </div>
 
@@ -219,14 +217,13 @@ export default function CityPage({ params }: PageProps) {
         <div className="container">
           <div className="grid lg:grid-cols-2 gap-12">
             <div>
+              {city === "Brandon" && <p className="text-gray-600 mb-4">For a car lockout in Brandon, provide the vehicle year, make, model, and a safe meeting location. For a home lockout or rekey, describe the door and lock so we can discuss the work before dispatch.</p>}
+              {city === "Sun City Center" && <p className="text-gray-600 mb-4">For service in Sun City Center, include any gate or community access instructions when you call. If you need locks rekeyed after a move, tell us how many doors and locks need attention so we can discuss the visit.</p>}
               <h2 id={`about-${city}-heading`} className="text-brand-blue mb-4">
                 Your Trusted Locksmith in {city}, FL
               </h2>
               <p className="text-gray-600 leading-relaxed mb-4">
-                InstaKey Pro Locksmith has been serving {city} and the surrounding
-                Tampa Bay area since {SITE.founded}. We understand the local community
-                and are committed to providing fast, reliable locksmith services whenever
-                you need them.
+                InstaKey Pro provides mobile locksmith service in {city}. We come to your location. Call to confirm availability before requesting a visit.
               </p>
               <p className="text-gray-600 leading-relaxed mb-4">
                 Whether you&apos;re locked out of your car on the highway, need your home
@@ -234,9 +231,7 @@ export default function CityPage({ params }: PageProps) {
                 system — our {city}-area technicians are ready to help.
               </p>
               <p className="text-gray-600 leading-relaxed mb-6">
-                We serve all neighborhoods in {city}, {state} {zip} and keep response
-                times under 30 minutes for most calls. Our pricing is always upfront —
-                no hidden fees, no surprises.
+                Give us your exact location in {city}, the service you need, and your callback number. Availability and arrival estimates depend on technician schedules and traffic. Confirm the quote before requesting dispatch.
               </p>
               <Button asChild variant="secondary" size="lg">
                 <a href={SITE.phoneTel}>

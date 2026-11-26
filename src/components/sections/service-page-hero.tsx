@@ -96,8 +96,8 @@ export function ServicePageHero({
           <div className="hidden lg:grid grid-cols-2 gap-4">
             {[
               { v: "24/7", l: "Emergency Service" },
-              { v: "30min", l: "Response Time" },
-              { v: "Licensed", l: "& Fully Insured" },
+              { v: "Call", l: "Arrival Estimate" },
+              { v: "Mobile", l: "We Come to You" },
               { v: "Flat Rate", l: "Upfront Pricing" },
             ].map(({ v, l }) => (
               <div

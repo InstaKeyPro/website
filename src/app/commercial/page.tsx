@@ -9,9 +9,10 @@ import { ServiceSchema } from "@/components/seo/json-ld";
 import { SERVICES, SITE } from "@/lib/constants";
 
 export const metadata: Metadata = {
+  alternates: { canonical: `${SITE.baseUrl}/commercial` },
   title: "Commercial Locksmith Tampa Bay – Master Keys, Access Control & More",
   description:
-    "Professional commercial locksmith services in Tampa Bay. Master key systems, high-security locks, access control, office lockouts & panic bars. Licensed, insured, 24/7 available.",
+    "Professional commercial locksmith services in Tampa Bay. Master key systems, high-security locks, access control, office lockouts & panic bars. 24/7 mobile service. Call for availability.",
   keywords: [
     "commercial locksmith Tampa",
     "master key system Tampa",

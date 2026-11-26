@@ -9,6 +9,7 @@ import { ServiceSchema } from "@/components/seo/json-ld";
 import { SERVICES, SITE } from "@/lib/constants";
 
 export const metadata: Metadata = {
+  alternates: { canonical: `${SITE.baseUrl}/smart-solutions` },
   title: "Smart Lock Installation Tampa Bay – Keyless & WiFi Lock Solutions",
   description:
     "Professional smart lock installation in Tampa Bay. Keypad locks, WiFi smart locks, Schlage Encode, Yale, August & more. Mobile-controlled access for homes and businesses.",

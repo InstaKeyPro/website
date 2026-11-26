@@ -52,7 +52,7 @@ export function ServicesOverview() {
             Complete Locksmith Services
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            From car lockouts to full smart lock integrations — our certified
+            From car lockouts to full smart lock integrations — our mobile
             technicians handle every type of lock and key challenge with speed
             and precision.
           </p>
