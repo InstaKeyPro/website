@@ -51,7 +51,7 @@ const LOCKOUT_OFFERS = [PRICING.carLockout, PRICING.homeLockout].map((p) => ({
     "@type": "Service" as const,
     name: p.service,
     serviceType: p.service,
-    provider: { "@type": "Locksmith" as const, name: SITE.name },
+    provider: { "@id": `${SITE.baseUrl}/#business` },
   },
 }));
 
@@ -144,7 +144,7 @@ export function ServiceSchema({
         availableChannel: {
           "@type": "ServiceChannel",
           serviceUrl: url,
-          servicePhone: TEL,
+          servicePhone: { "@type": "ContactPoint", telephone: TEL },
           serviceLocation: {
             "@type": "Place",
             name: "Mobile service across Tampa Bay, FL",

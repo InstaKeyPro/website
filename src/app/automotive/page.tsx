@@ -26,6 +26,7 @@ export const metadata: Metadata = {
     "auto locksmith open now",
   ],
   openGraph: {
+    images: [{ url: "/images/van.jpg", alt: `${SITE.name} mobile service` }],
     title: "Automotive Locksmith Tampa Bay | InstaKey Pro",
     url: `${SITE.baseUrl}/automotive`,
     description:
